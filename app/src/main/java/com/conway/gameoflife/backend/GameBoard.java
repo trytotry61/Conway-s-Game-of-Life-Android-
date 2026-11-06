@@ -15,7 +15,6 @@ public class GameBoard {
                     "Размер поля должен быть не меньше 3x3"
             );
         }
-
         this.width = width;
         this.height = height;
 

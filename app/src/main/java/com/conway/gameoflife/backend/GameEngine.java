@@ -4,7 +4,6 @@ public class GameEngine {
 
     private GameBoard board;
     private final GameRules rules;
-
     private int generation;
 
     public GameEngine(int width, int height) {

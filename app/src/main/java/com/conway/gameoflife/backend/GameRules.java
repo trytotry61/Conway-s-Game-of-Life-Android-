@@ -8,7 +8,6 @@ public class GameRules {
         int count = 0;
         int height = board.getHeight();
         int width = board.getWidth();
-
         for (int dr = -1; dr <= 1; dr++) {
 
             for (int dc = -1; dc <= 1; dc++) {
