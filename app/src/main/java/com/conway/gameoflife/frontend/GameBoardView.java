@@ -15,6 +15,7 @@ public class GameBoardView extends View {
 
     private final GameEngine game;
 
+
     private final Paint cellPaint;
     private final Paint gridPaint;
 
