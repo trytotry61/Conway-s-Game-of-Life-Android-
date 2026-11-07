@@ -66,6 +66,7 @@ public class GameBoardView extends View {
 
         offsetX = (getWidth() - boardWidth) / 2;
         offsetY = (getHeight() - boardHeight) / 2;
+        zoom.setContentBounds(offsetX,offsetY,offsetX+boardWidth,offsetY+boardHeight);
         canvas.save();
         canvas.concat(zoom.getMatrix());
 
