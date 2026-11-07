@@ -82,12 +82,12 @@ public class ScaleZoom{
     public boolean hasMoved(){
         return moved;
     }
-    public float mapTouchToBoard(float x,float y){
+    public float[] mapTouchToBoard(float x,float y){
         float[] point ={x,y};
         if(matrix.invert(inverseMatrix)){
             inverseMatrix.mapPoints(point);
         }
-        return matrix;
+        return point;
     }
 
 
