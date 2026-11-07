@@ -1,7 +1,6 @@
 package com.conway.gameoflife.frontend;
  import android.content.Context;
  import android.graphics.Matrix;
- import android.media.midi.MidiOutputPort;
  import android.view.MotionEvent;
  import android.view.ScaleGestureDetector;
  import android.view.View;
@@ -10,6 +9,7 @@ public class ScaleZoom{
     private final Matrix matrix =new Matrix();
     private final Matrix inverseMatrix=new Matrix();
     private final ScaleGestureDetector scaleDetector;
+    private final View targetView;
     private float scaleFactor=1.0f;
     private final float minScale=1.0f;
     private final float maxScale=5.0f;
@@ -20,9 +20,10 @@ public class ScaleZoom{
     private final int touchSlop;
     private boolean moved=false;
     private boolean dragging=false;
-    public ScaleZoom(Context context){
-        scaleDetector=new ScaleGestureDetector(context,new ScaleListener());
-        touchSlop=ViewConfiguration.get(context).getScaledTouchSlop();
+    public ScaleZoom(View view){
+        targetView=view;
+        scaleDetector=new ScaleGestureDetector(view.getContext(),new ScaleListener());
+        touchSlop=ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
     }
     public boolean onTouchEvent(MotionEvent event){
         scaleDetector.onTouchEvent(event);
@@ -45,13 +46,14 @@ public class ScaleZoom{
                     float y=event.getY();
                     float totalDx=x-downX;
                     float totalDy=y-downY;
-                    if(!moved && (Math.abs(totalDy)>touchSlop)){
+                    if(!moved && (Math.abs(totalDx)>touchSlop) || (Math.abs(totalDy)>touchSlop)){
                         moved=true;
                     }
-                    if(dragging && moved){
+                    if(dragging && moved && scaleFactor>minScale){
                         float dx=x-lastTouchX;
                         float dy=y-lastTouchY;
                         matrix.postTranslate(dx,dy);
+                        targetView.invalidate();
                     }
                     lastTouchX=x;
                     lastTouchY=y;
