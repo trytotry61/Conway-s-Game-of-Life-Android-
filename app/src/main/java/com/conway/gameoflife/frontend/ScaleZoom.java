@@ -48,7 +48,7 @@ public class ScaleZoom{
                     float y=event.getY();
                     float totalDx=x-downX;
                     float totalDy=y-downY;
-                    if(!moved && (Math.abs(totalDx)>touchSlop) || (Math.abs(totalDy)>touchSlop)){
+                    if(!moved && (Math.abs(totalDx)>touchSlop || Math.abs(totalDy)>touchSlop)){
                         moved=true;
                     }
                     if(dragging && moved && scaleFactor>minScale){
@@ -119,6 +119,7 @@ public class ScaleZoom{
         }else if(transformBounds.bottom<viewHeight){
             dy=viewHeight-transformBounds.bottom;
         }
+        matrix.postTranslate(dx,dy);
     }
     public float[] mapTouchToBoard(float x,float y){
         float[] point ={x,y};
