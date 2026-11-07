@@ -76,6 +76,12 @@ public class ScaleZoom{
 
 
     }
+    public Matrix getMatrix(){
+        return matrix;
+    }
+    public boolean hasMoved(){
+        return moved;
+    }
 
 
 
