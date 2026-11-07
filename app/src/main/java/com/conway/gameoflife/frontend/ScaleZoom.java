@@ -89,10 +89,22 @@ public class ScaleZoom{
         }
         return point;
     }
+    private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener{
+        @Override
+        public boolean onScale(ScaleGestureDetector detector){
+            float factor=detector.getScaleFactor();
+            float newScale=scaleFactor*factor;
+            newScale=Math.max(minScale,Math.min(newScale,maxScale));
+            factor=newScale/scaleFactor;
+            scaleFactor=newScale;
+            matrix.postScale(factor,factor,detector.getFocusX(),detector.getFocusY());
+            moved=true;
+            return true;
+        }
+
+    }
 
 
 
 }
-private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener{
 
-}
