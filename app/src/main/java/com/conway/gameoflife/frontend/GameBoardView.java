@@ -18,7 +18,7 @@ public class GameBoardView extends View {
 
     private final Paint cellPaint;
     private final Paint gridPaint;
-
+    private final ScaleZoom zoom;
     private float cellSize;
     private float offsetX;
     private float offsetY;
@@ -28,7 +28,7 @@ public class GameBoardView extends View {
         super(context);
 
         this.game = game;
-
+        zoom=new ScaleZoom(context);
         cellPaint = new Paint();
         cellPaint.setColor(Color.rgb(34, 160, 107));
         cellPaint.setStyle(Paint.Style.FILL);
@@ -66,6 +66,8 @@ public class GameBoardView extends View {
 
         offsetX = (getWidth() - boardWidth) / 2;
         offsetY = (getHeight() - boardHeight) / 2;
+        canvas.save();
+        canvas.concat(zoom.getMatrix());
 
         for (int row = 0; row < height; row++) {
 
@@ -97,19 +99,18 @@ public class GameBoardView extends View {
                 );
             }
         }
+        canvas.restore();
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+        if (event.getActionMasked()==MotionEvent.ACTION_UP && !zoom.hasMoved()) {
 
-            if (cellSize <= 0) {
-                return true;
-            }
+            float[] point=zoom.mapTouchToBoard(event.getX(),event.getY());
 
-            int col = (int) ((event.getX() - offsetX) / cellSize);
-            int row = (int) ((event.getY() - offsetY) / cellSize);
+            int col = (int) ((point[0] - offsetX) / cellSize);
+            int row = (int) ((point[1] - offsetY) / cellSize);
 
             GameBoard board = game.getBoard();
 

@@ -62,9 +62,6 @@ public class MainActivity extends Activity {
         root.setOrientation(LinearLayout.VERTICAL);
         root.setPadding(dp(16), dp(20), dp(16), dp(12));
         root.setBackgroundColor(Color.rgb(247, 249, 248));
-
-        // Заголовок
-
         TextView title = new TextView(this);
         title.setText("Игра жизни");
         title.setTextSize(27);
@@ -163,8 +160,6 @@ public class MainActivity extends Activity {
         boardParams.bottomMargin = dp(12);
 
         root.addView(boardContainer, boardParams);
-
-        // Статус игры
 
         statusText = new TextView(this);
         statusText.setText("Игра остановлена");
