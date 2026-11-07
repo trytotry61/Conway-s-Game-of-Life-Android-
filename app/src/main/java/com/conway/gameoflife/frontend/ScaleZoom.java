@@ -1,6 +1,7 @@
 package com.conway.gameoflife.frontend;
  import android.content.Context;
  import android.graphics.Matrix;
+ import android.graphics.RectF;
  import android.view.MotionEvent;
  import android.view.ScaleGestureDetector;
  import android.view.View;
@@ -10,6 +11,7 @@ public class ScaleZoom{
     private final Matrix inverseMatrix=new Matrix();
     private final ScaleGestureDetector scaleDetector;
     private final View targetView;
+    private final RectF contentBounds=new RectF();
     private float scaleFactor=1.0f;
     private final float minScale=1.0f;
     private final float maxScale=5.0f;
@@ -83,6 +85,31 @@ public class ScaleZoom{
     }
     public boolean hasMoved(){
         return moved;
+    }
+    public void setContentBounds( float left,float top, float right,float bottom){
+        contentBounds.set(left,top,right,bottom);
+        constrainMatrix();
+
+    }
+    private void constrainMatrix(){
+        if(contentBounds.isEmpty() || targetView.getWidth()==0 || targetView.getHeight()==0){
+            return;
+        }
+        RectF transformBounds=new RectF(contentBounds);
+        matrix.mapRect(transformBounds);
+        float minVisible=64*targetView.getResources().getDisplayMetrics().density;
+        float dx=0;
+        float dy=0;
+        if(transformBounds.right<minVisible){
+            dx=minVisible-transformBounds.right;
+        } else if (transformBounds.left>targetView.getWidth()-minVisible) {
+            dx=targetView.getWidth()-minVisible-transformBounds.left;
+        }
+        if(transformBounds.bottom<minVisible){
+            dy=minVisible-transformBounds.bottom;
+        } else if (transformBounds.top>targetView.getHeight()-minVisible) {
+            dy=targetView.getHeight()-minVisible-transformBounds.top;
+        }
     }
     public float[] mapTouchToBoard(float x,float y){
         float[] point ={x,y};
