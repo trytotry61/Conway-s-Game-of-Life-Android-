@@ -126,7 +126,13 @@ public class ScaleZoom{
             newScale=Math.max(minScale,Math.min(newScale,maxScale));
             factor=newScale/scaleFactor;
             scaleFactor=newScale;
-            matrix.postScale(factor,factor,detector.getFocusX(),detector.getFocusY());
+            if(scaleFactor<=minScale){
+                matrix.reset();
+            }else{
+                matrix.postScale(factor,factor,detector.getFocusX(),detector.getFocusY());
+                constrainMatrix();
+            }
+
             moved=true;
             return true;
         }

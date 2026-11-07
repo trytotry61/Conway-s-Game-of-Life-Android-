@@ -35,7 +35,7 @@ public class GameBoardView extends View {
         cellPaint.setAntiAlias(true);
 
         gridPaint = new Paint();
-        gridPaint.setColor(Color.rgb(229, 235, 230));
+        gridPaint.setColor(Color.rgb(0, 0, 0));
         gridPaint.setStyle(Paint.Style.STROKE);
         gridPaint.setStrokeWidth(1);
     }
