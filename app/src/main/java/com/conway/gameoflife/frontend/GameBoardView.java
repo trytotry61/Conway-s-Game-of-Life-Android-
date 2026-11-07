@@ -28,7 +28,7 @@ public class GameBoardView extends View {
         super(context);
 
         this.game = game;
-        zoom=new ScaleZoom(context);
+        zoom=new ScaleZoom(this);
         cellPaint = new Paint();
         cellPaint.setColor(Color.rgb(34, 160, 107));
         cellPaint.setStyle(Paint.Style.FILL);
@@ -104,8 +104,12 @@ public class GameBoardView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        zoom.onTouchEvent(event);
 
         if (event.getActionMasked()==MotionEvent.ACTION_UP && !zoom.hasMoved()) {
+            if(cellSize<=0){
+                return true;
+            }
 
             float[] point=zoom.mapTouchToBoard(event.getX(),event.getY());
 
