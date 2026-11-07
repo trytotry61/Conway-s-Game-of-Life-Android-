@@ -55,6 +55,7 @@ public class ScaleZoom{
                         float dx=x-lastTouchX;
                         float dy=y-lastTouchY;
                         matrix.postTranslate(dx,dy);
+                        constrainMatrix();
                         targetView.invalidate();
                     }
                     lastTouchX=x;
@@ -100,15 +101,23 @@ public class ScaleZoom{
         float minVisible=64*targetView.getResources().getDisplayMetrics().density;
         float dx=0;
         float dy=0;
-        if(transformBounds.right<minVisible){
-            dx=minVisible-transformBounds.right;
-        } else if (transformBounds.left>targetView.getWidth()-minVisible) {
-            dx=targetView.getWidth()-minVisible-transformBounds.left;
+        float viewWidth=targetView.getWidth();
+        float viewHeight=targetView.getHeight();
+        if(transformBounds.width()<viewWidth){
+            dx=viewWidth/2f-transformBounds.centerX();
+        } else if (transformBounds.left>0) {
+            dx=-transformBounds.left;
+        } else if (transformBounds.right<viewWidth) {
+            dx=viewWidth-transformBounds.right;
+
         }
-        if(transformBounds.bottom<minVisible){
-            dy=minVisible-transformBounds.bottom;
-        } else if (transformBounds.top>targetView.getHeight()-minVisible) {
-            dy=targetView.getHeight()-minVisible-transformBounds.top;
+        if(transformBounds.height()<=viewHeight){
+            dy=viewHeight/2f -transformBounds.centerY();
+        } else if (transformBounds.top>0) {
+            dy=-transformBounds.top;
+
+        }else if(transformBounds.bottom<viewHeight){
+            dy=viewHeight-transformBounds.bottom;
         }
     }
     public float[] mapTouchToBoard(float x,float y){
