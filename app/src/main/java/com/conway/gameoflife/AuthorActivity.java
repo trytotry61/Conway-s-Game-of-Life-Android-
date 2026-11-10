@@ -64,6 +64,29 @@ public class AuthorActivity extends Activity {
         nameParams.topMargin=dp(10);
         root.addView(authorName,nameParams);
 
+        TextView projectInfo=new TextView(this);
+        projectInfo.setText("Учебный проект\n Android Java\n2026");
+        projectInfo.setTextSize(14);
+        projectInfo.setTextColor(Color.rgb(100,112,103));
+        projectInfo.setGravity(Gravity.CENTER);
+        projectInfo.setLineSpacing(dp(5),1);
+
+        LinearLayout.LayoutParams infoParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        infoParams.topMargin=dp(20);
+        root.addView(projectInfo,infoParams);
+
+        TextView signature =new TextView(this);
+        signature.setText("Designed and developen by Egor Kurakin");
+        signature.setTextSize(13);
+        signature.setTextColor(Color.rgb(120,130,123));
+        signature.setGravity(Gravity.CENTER);
+        signature.setTypeface(null,Typeface.ITALIC);
+
+        LinearLayout.LayoutParams signatureParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        signatureParams.topMargin=dp(35);
+        root.addView(signature,signatureParams);
+
+
 
     }
 
