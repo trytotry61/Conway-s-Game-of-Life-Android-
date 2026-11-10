@@ -96,8 +96,9 @@ public class AuthorActivity extends Activity {
         LinearLayout.LayoutParams buttonParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
         buttonParams.topMargin=dp(55);
         root.addView(backButton,buttonParams);
-
-
+    }
+    private int dp(int value){
+        return (int)(value*getResources().getDisplayMetrics().density);
     }
 
 }

@@ -3,3 +3,8 @@
 - [ ] Иконка
 - [x ] Слияние веток
 - [ ] Подумать над дизайном
+
+
+`bash
+git merge --no-ff feature/author-easter-egg -m "Merge feature/backdoor into main"
+`
