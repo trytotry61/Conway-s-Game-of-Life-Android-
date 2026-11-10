@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.io.LineNumberReader;
+
 public class AuthorActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -50,6 +52,18 @@ public class AuthorActivity extends Activity {
         LinearLayout.LayoutParams labelParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
         labelParams.topMargin=dp(55);
         root.addView(authorLabel,labelParams);
+
+        TextView authorName=new TextView(this);
+        authorName.setText("Name VorName");
+        authorName.setTextSize(25);
+        authorName.setTextColor(Color.rgb(34,160,107));
+        authorName.setTypeface(null,Typeface.BOLD);
+        authorName.setGravity(Gravity.CENTER);
+
+        LinearLayout.LayoutParams nameParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        nameParams.topMargin=dp(10);
+        root.addView(authorName,nameParams);
+
 
     }
 
