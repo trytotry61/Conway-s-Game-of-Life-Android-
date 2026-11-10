@@ -86,6 +86,16 @@ public class AuthorActivity extends Activity {
         signatureParams.topMargin=dp(35);
         root.addView(signature,signatureParams);
 
+        Button backButton=new Button(this);
+        backButton.setText("Back Game");
+        backButton.setAllCaps(false);
+        backButton.setTextColor(Color.WHITE);
+        backButton.setBackgroundResource(R.drawable.button_primary);
+        backButton.setOnClickListener(v->finish());
+
+        LinearLayout.LayoutParams buttonParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        buttonParams.topMargin=dp(55);
+        root.addView(backButton,buttonParams);
 
 
     }
