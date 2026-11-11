@@ -130,5 +130,32 @@ public class SignatureView extends View {
             e.printStackTrace();
         }
     }
+    public void startAnimation() {
+
+        if (elements.isEmpty()) {
+            return;
+        }
+
+        if (animator != null) {
+            animator.cancel();
+        }
+
+        animationProgress = 0;
+
+        animator = ValueAnimator.ofFloat(0, elements.size());
+
+        animator.setDuration(elements.size() * STROKE_DURATION);
+
+        animator.addUpdateListener(animation -> {
+
+            animationProgress =
+                    (float) animation.getAnimatedValue();
+
+            invalidate();
+        });
+
+        animator.start();
+    }
+
 
 }
