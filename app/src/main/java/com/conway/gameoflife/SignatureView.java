@@ -212,6 +212,56 @@ public class SignatureView extends View {
 
         canvas.restore();
     }
+    private void drawCompleteElement(
+            Canvas canvas,
+            SignatureElement element
+    ) {
+
+        if (element.isDot) {
+
+            canvas.drawCircle(
+                    element.dotX,
+                    element.dotY,
+                    element.dotRadius,
+                    createDotPaint()
+            );
+
+        } else {
+
+            canvas.drawPath(element.path, paint);
+        }
+    }
+
+    private void drawPartialElement(
+            Canvas canvas,
+            SignatureElement element,
+            float progress
+    ) {
+
+        if (element.isDot) {
+
+            if (progress >= 1f) {
+                drawCompleteElement(canvas, element);
+            }
+
+            return;
+        }
+
+        pathMeasure.setPath(element.path, false);
+
+        drawingPath.reset();
+
+        float distance = element.length * progress;
+
+        pathMeasure.getSegment(
+                0,
+                distance,
+                drawingPath,
+                true
+        );
+
+        canvas.drawPath(drawingPath, paint);
+    }
 
 
 }
