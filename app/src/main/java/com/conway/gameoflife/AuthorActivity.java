@@ -104,16 +104,24 @@ public class AuthorActivity extends Activity {
         root.addView(projectCard);
 
 
-        TextView signature =new TextView(this);
-        signature.setText("Designed and developen by Egor Kurakin");
-        signature.setTextSize(13);
-        signature.setTextColor(Color.rgb(120,130,123));
-        signature.setGravity(Gravity.CENTER);
-        signature.setTypeface(null,Typeface.ITALIC);
-
-        LinearLayout.LayoutParams signatureParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-        signatureParams.topMargin=dp(35);
-        root.addView(signature,signatureParams);
+        LinearLayout signatureCard=createCard();
+        TextView signatureTitle=createText(
+                "PERSONAL SIGNATURE",
+                12,
+                SECONDARY_COLOR,
+                Typeface.BOLD
+        );
+        signatureCard.addView(signatureTitle);
+        TextView signature=createText(
+                "Designed and developed by Egor Kurakin",
+                14,
+                TEXT_COLOR,
+                Typeface.ITALIC
+        );
+        LinearLayout.LayoutParams signatureParams=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        signatureParams.topMargin=dp(18);
+        signatureCard.addView(signature,signatureParams);
+        root.addView(signatureCard);
 
         Button backButton=new Button(this);
         backButton.setText("Back Game");
