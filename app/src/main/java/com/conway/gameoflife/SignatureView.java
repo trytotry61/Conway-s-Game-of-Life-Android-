@@ -61,7 +61,7 @@ public class SignatureView extends View {
         try {
 
             InputStream inputStream =
-                    getContext().getAssets().open("signature_paths.svg");
+                    getContext().getAssets().open("signature_transparent.svg");
 
             XmlPullParser parser = Xml.newPullParser();
             parser.setInput(inputStream, "UTF-8");
