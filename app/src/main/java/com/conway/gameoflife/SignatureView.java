@@ -47,4 +47,13 @@ public class SignatureView extends View {
         super(context,attr);
         init();
     }
+    private void init(){
+        paint.setColor(Color.BLACK);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(2f);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+
+        loadSignature();
+    }
 }
