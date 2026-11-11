@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 
 public class AuthorActivity extends Activity {
     private final int BACKGROUND_COLOR=Color.rgb(235,244,238);
@@ -119,11 +121,26 @@ public class AuthorActivity extends Activity {
         card.setPadding(dp(20),dp(24),dp(20),dp(24));
 
         card.setBackgroundResource(R.drawable.board_background);
-        LinearLayout.LayoutParams params=new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.bottomMargin=dp(16);
         card.setLayoutParams(params);
 
         return card;
+    }
+    private TextView createText(
+            String text,
+            int size,
+            int color,
+            int typeface
+    ){
+        TextView textView=new TextView(this);
+        textView.setText(text);
+        textView.setTextSize(size);
+        textView.setTextColor(color);
+        textView.setTypeface(null,typeface);
+        textView.setGravity(Gravity.CENTER);
+
+        return textView;
     }
 
 }
