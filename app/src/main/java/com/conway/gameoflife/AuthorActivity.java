@@ -60,36 +60,26 @@ public class AuthorActivity extends Activity {
         titleCard.addView(subtitle,subtittleParams);
 
 
-        TextView subtitle=new TextView(this);
-        subtitle.setText("Cellular Automaton");
-        subtitle.setTextSize(14);
-        subtitle.setTextColor(Color.rgb(120,130,123));
-        subtitle.setGravity(Gravity.CENTER);
+        root.addView(titleCard);
 
-        LinearLayout.LayoutParams subtitleParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        subtitleParams.topMargin=dp(8);
-        root.addView(subtitle,subtitleParams);
-
-        TextView authorLabel=new TextView(this);
-        authorLabel.setText("Developer");
-        authorLabel.setTextSize(11);
-        authorLabel.setTextColor(Color.rgb(120,130,123));
-        authorLabel.setGravity(Gravity.CENTER);
-
-        LinearLayout.LayoutParams labelParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-        labelParams.topMargin=dp(55);
-        root.addView(authorLabel,labelParams);
-
-        TextView authorName=new TextView(this);
-        authorName.setText("Name VorName");
-        authorName.setTextSize(25);
-        authorName.setTextColor(Color.rgb(34,160,107));
-        authorName.setTypeface(null,Typeface.BOLD);
-        authorName.setGravity(Gravity.CENTER);
-
-        LinearLayout.LayoutParams nameParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-        nameParams.topMargin=dp(10);
-        root.addView(authorName,nameParams);
+        LinearLayout authorCard=createCard();
+        TextView authorLabel=createText(
+                "Developer",
+                12,
+                SECONDARY_COLOR,
+                Typeface.BOLD
+        );
+        authorCard.addView(authorLabel);
+         TextView authorName=createText(
+                 "Kurakin Egor",
+                 25,
+                 GREEN_COLOR,
+                 Typeface.BOLD
+         );
+         LinearLayout.LayoutParams namePrams=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+         namePrams.topMargin=dp(12);
+         authorCard.addView(authorName,namePrams);
+         root.addView(authorCard);
 
         TextView projectInfo=new TextView(this);
         projectInfo.setText("Учебный проект\n Android Java\n2026");
