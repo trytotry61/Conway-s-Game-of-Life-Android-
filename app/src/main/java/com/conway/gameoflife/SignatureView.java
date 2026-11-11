@@ -262,6 +262,29 @@ public class SignatureView extends View {
 
         canvas.drawPath(drawingPath, paint);
     }
+    private Paint createDotPaint() {
+
+        Paint dotPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+
+        dotPaint.setColor(Color.BLACK);
+        dotPaint.setStyle(Paint.Style.FILL);
+
+        return dotPaint;
+    }
+    public void restartAnimation() {
+        startAnimation();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+
+        if (animator != null) {
+            animator.cancel();
+        }
+
+        super.onDetachedFromWindow();
+    }
+}
 
 
 }
