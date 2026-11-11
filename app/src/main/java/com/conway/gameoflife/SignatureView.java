@@ -156,6 +156,62 @@ public class SignatureView extends View {
 
         animator.start();
     }
+    @Override
+    protected void onDraw(Canvas canvas) {
+
+        super.onDraw(canvas);
+
+        if (elements.isEmpty()) {
+            return;
+        }
+
+        canvas.save();
+        float scale = Math.min(
+                getWidth() / SVG_WIDTH,
+                getHeight() / SVG_HEIGHT
+        );
+
+        float offsetX =
+                (getWidth() - SVG_WIDTH * scale) / 2f;
+
+        float offsetY =
+                (getHeight() - SVG_HEIGHT * scale) / 2f;
+
+        canvas.translate(offsetX, offsetY);
+        canvas.scale(scale, scale);
+
+        int completedElements = (int) animationProgress;
+
+        float currentProgress =
+                animationProgress - completedElements;
+
+        for (int i = 0; i < elements.size(); i++) {
+
+            SignatureElement element = elements.get(i);
+
+            if (i < completedElements) {
+
+                drawCompleteElement(canvas, element);
+
+            } else if (i == completedElements) {
+
+                if (currentProgress > 0) {
+
+                    drawPartialElement(
+                            canvas,
+                            element,
+                            currentProgress
+                    );
+                }
+
+                break;
+            } else {
+                break;
+            }
+        }
+
+        canvas.restore();
+    }
 
 
 }
