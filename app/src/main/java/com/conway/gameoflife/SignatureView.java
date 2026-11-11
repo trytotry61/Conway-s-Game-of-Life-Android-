@@ -284,7 +284,5 @@ public class SignatureView extends View {
 
         super.onDetachedFromWindow();
     }
-}
-
 
 }
