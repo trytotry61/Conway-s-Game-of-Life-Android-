@@ -56,4 +56,79 @@ public class SignatureView extends View {
 
         loadSignature();
     }
+    private void loadSignature() {
+
+        try {
+
+            InputStream inputStream =
+                    getContext().getAssets().open("signature_paths.svg");
+
+            XmlPullParser parser = Xml.newPullParser();
+            parser.setInput(inputStream, "UTF-8");
+
+            int eventType = parser.getEventType();
+
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+
+                if (eventType == XmlPullParser.START_TAG) {
+
+                    String tag = parser.getName();
+
+                    if ("path".equals(tag)) {
+
+                        String pathData =
+                                parser.getAttributeValue(null, "d");
+
+                        if (pathData != null) {
+
+                            Path path =
+                                    PathParser.createPathFromPathData(pathData);
+
+                            if (path != null) {
+
+                                SignatureElement element =
+                                        new SignatureElement();
+
+                                element.path = path;
+
+                                pathMeasure.setPath(path, false);
+                                element.length = pathMeasure.getLength();
+
+                                elements.add(element);
+                            }
+                        }
+                    }
+                    if ("ellipse".equals(tag)) {
+
+                        SignatureElement element =
+                                new SignatureElement();
+
+                        element.isDot = true;
+
+                        element.dotX = Float.parseFloat(
+                                parser.getAttributeValue(null, "cx")
+                        );
+
+                        element.dotY = Float.parseFloat(
+                                parser.getAttributeValue(null, "cy")
+                        );
+
+                        element.dotRadius = Float.parseFloat(
+                                parser.getAttributeValue(null, "rx")
+                        );
+
+                        elements.add(element);
+                    }
+                }
+
+                eventType = parser.next();
+            }
+
+            inputStream.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
