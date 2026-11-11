@@ -13,6 +13,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.content.Intent;
+import android.os.SystemClock;
 
 import com.conway.gameoflife.backend.GameEngine;
 import com.conway.gameoflife.frontend.GameBoardView;
@@ -32,6 +34,11 @@ public class MainActivity extends Activity {
 
     private boolean running = false;
     private long updateDelay = 550;
+    private static final int REQUIRED_TABS=7;
+    private static final long TAP_TIME_LIMIT=2500;
+
+    private int generationTapCount=0;
+    private long firstGenerationTapTime=0;
 
     private final Runnable gameLoop = new Runnable() {
         @Override
@@ -101,6 +108,7 @@ public class MainActivity extends Activity {
 
         generationText = (TextView) generationCard.getChildAt(1);
         aliveText = (TextView) aliveCard.getChildAt(1);
+        generationCard.setOnClickListener(v->handlerGenerationTapToCard());
 
         LinearLayout.LayoutParams cardParams =
                 new LinearLayout.LayoutParams(
@@ -483,5 +491,21 @@ public class MainActivity extends Activity {
         pauseGame();
 
         super.onDestroy();
+    }
+    private void handlerGenerationTapToCard(){
+        long currentTime=SystemClock.elapsedRealtime();
+        if(generationTapCount==0 || currentTime-firstGenerationTapTime>TAP_TIME_LIMIT){
+            generationTapCount=1;
+            firstGenerationTapTime=currentTime;
+
+        }else{
+            generationTapCount++;
+        }
+        if(generationTapCount>=REQUIRED_TABS){
+            generationTapCount=0;
+            firstGenerationTapTime=0;
+            Intent intent=new Intent(MainActivity.this,AuthorActivity.class);
+            startActivity(intent);
+        }
     }
 }
