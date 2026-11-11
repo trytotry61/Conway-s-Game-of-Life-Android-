@@ -112,6 +112,11 @@ public class AuthorActivity extends Activity {
                 Typeface.BOLD
         );
         signatureCard.addView(signatureTitle);
+        SignatureView signatureView=new SignatureView(this);
+        LinearLayout.LayoutParams signatureViewParams=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,dp(150));
+        signatureViewParams.topMargin=dp(8);
+        signatureCard.addView(signatureView,signatureViewParams);
+        signatureView.post(signatureView::startAnimation);
         TextView signature=createText(
                 "Designed and developed by Egor Kurakin",
                 14,
