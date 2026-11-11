@@ -12,6 +12,11 @@ import android.widget.TextView;
 
 
 public class AuthorActivity extends Activity {
+    private final int BACKGROUND_COLOR=Color.rgb(235,244,238);
+    private final int CARD_COLOR=Color.WHITE;
+    private final int TEXT_COLOR= Color.rgb(31,41,35);
+    private final int SECONDARY_COLOR=Color.rgb(120,130,123);
+    private final int GREEN_COLOR=Color.rgb(34,160,107);
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
