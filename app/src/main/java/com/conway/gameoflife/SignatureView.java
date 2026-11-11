@@ -29,4 +29,22 @@ public class SignatureView extends View {
         float dotRadius;
 
     }
+    private final List<SignatureElement> elements=new ArrayList<>();
+    private final Paint paint=new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final PathMeasure pathMeasure=new PathMeasure();
+    private final Path drawingPath=new Path();
+    private ValueAnimator animator;
+    private float animationProgress=0;
+    private static final float SVG_WIDTH=685f;
+    private static final float SVG_HEIGHT=350f;
+    private static final long STROKE_DURATION=450;
+
+    public SignatureView(Context context){
+        super(context);
+        init();
+    }
+    public SignatureView(Context context,AttributeSet attr){
+        super(context,attr);
+        init();
+    }
 }
