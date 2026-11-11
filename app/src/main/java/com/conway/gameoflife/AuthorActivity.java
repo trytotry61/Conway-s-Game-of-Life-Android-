@@ -70,27 +70,39 @@ public class AuthorActivity extends Activity {
                 Typeface.BOLD
         );
         authorCard.addView(authorLabel);
-         TextView authorName=createText(
+        TextView authorName=createText(
                  "Kurakin Egor",
                  25,
                  GREEN_COLOR,
                  Typeface.BOLD
-         );
-         LinearLayout.LayoutParams namePrams=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-         namePrams.topMargin=dp(12);
-         authorCard.addView(authorName,namePrams);
-         root.addView(authorCard);
+        );
+        LinearLayout.LayoutParams namePrams=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        namePrams.topMargin=dp(12);
+        authorCard.addView(authorName,namePrams);
+        root.addView(authorCard);
 
-        TextView projectInfo=new TextView(this);
-        projectInfo.setText("Учебный проект\n Android Java\n2026");
-        projectInfo.setTextSize(14);
-        projectInfo.setTextColor(Color.rgb(100,112,103));
-        projectInfo.setGravity(Gravity.CENTER);
-        projectInfo.setLineSpacing(dp(5),1);
 
-        LinearLayout.LayoutParams infoParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-        infoParams.topMargin=dp(20);
-        root.addView(projectInfo,infoParams);
+        LinearLayout projectCard=createCard();
+        TextView projectTitle=createText(
+                "ABOUT PROJECT",
+                12,
+                SECONDARY_COLOR,
+                Typeface.BOLD
+        );
+        projectCard.addView(projectTitle);
+
+        TextView projectInfo=createText(
+                "Learning project\nAndroid Java\n2026",
+                15,
+                TEXT_COLOR,
+                Typeface.NORMAL
+        );
+        projectInfo.setLineSpacing(dp(6),1);
+        LinearLayout.LayoutParams infoParams=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        infoParams.topMargin=dp(14);
+        projectCard.addView(projectInfo,infoParams);
+        root.addView(projectCard);
+
 
         TextView signature =new TextView(this);
         signature.setText("Designed and developen by Egor Kurakin");
