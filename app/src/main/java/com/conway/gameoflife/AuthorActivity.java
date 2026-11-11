@@ -2,9 +2,11 @@ package com.conway.gameoflife;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.graphics.Typeface;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -31,6 +33,7 @@ public class AuthorActivity extends Activity {
         root.setGravity(Gravity.CENTER);
         root.setPadding(dp(28),dp(24),dp(28),dp(24));
         root.setBackgroundColor(Color.rgb(247,249,248));
+
 
         TextView title =new TextView(this);
         title.setText("Game of Life");
@@ -108,6 +111,19 @@ public class AuthorActivity extends Activity {
     }
     private int dp(int value){
         return (int)(value*getResources().getDisplayMetrics().density);
+    }
+    private LinearLayout createCard(){
+        LinearLayout card=new LinearLayout(this);
+        card.setOrientation(LinearLayout.VERTICAL);
+        card.setGravity(Gravity.CENTER);
+        card.setPadding(dp(20),dp(24),dp(20),dp(24));
+
+        card.setBackgroundResource(R.drawable.board_background);
+        LinearLayout.LayoutParams params=new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.bottomMargin=dp(16);
+        card.setLayoutParams(params);
+
+        return card;
     }
 
 }
