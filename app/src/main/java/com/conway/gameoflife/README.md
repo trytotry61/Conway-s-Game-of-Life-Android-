@@ -1,8 +1,9 @@
 ### This is android version my project Conway's game of life. This is my stydy project 
-- [ ] Добавить backdoor 
+- [x] Добавить backdoor 
 - [ ] Иконка
-- [x ] Слияние веток
-- [ ] Подумать над дизайном
+- [x] Слияние веток
+- [x] Подумать над дизайном
+- [ ] Автограф
 
 
 `bash
