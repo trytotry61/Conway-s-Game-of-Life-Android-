@@ -119,13 +119,14 @@ public class AuthorActivity extends Activity {
         backButton.setText("Back Game");
         backButton.setAllCaps(false);
         backButton.setTextColor(Color.WHITE);
+        backButton.setTextSize(15);
         backButton.setBackgroundResource(R.drawable.button_primary);
         backButton.setOnClickListener(v->finish());
 
         LinearLayout.LayoutParams buttonParams=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
         buttonParams.topMargin=dp(55);
         root.addView(backButton,buttonParams);
-        setContentView(root);
+        setContentView(scrollView);
     }
     private int dp(int value){
         return (int)(value*getResources().getDisplayMetrics().density);
